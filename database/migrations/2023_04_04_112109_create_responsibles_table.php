@@ -17,7 +17,10 @@ class CreateResponsiblesTable extends Migration
             $table->id();
             $table->string("name");
             $table->string("phone");
+            $table->string("religion");
+            $table->string("occupation");
             $table->string("address");
+             $table->string("email");
             $table->softDeletes();
             $table->timestamps();
         });

@@ -6,7 +6,7 @@
         <div class="sidebar-brand-icon rotate-n-15">
             <i class="fas fa-laugh-wink"></i>
         </div>
-        <div class="sidebar-brand-text mx-3">SGE - Admin</div>
+        <div class="sidebar-brand-text mx-3">GESTÃO ESCOLAR - Admin</div>
     </a>
 
     <!-- Divider -->
@@ -16,12 +16,12 @@
     <li class="nav-item active">
         <a class="nav-link" href="{{ route('admin.home') }}">
             <i class="fas fa-fw fa-tachometer-alt"></i>
-            <span>Painel</span></a>
+            <span>Painel Administrativo</span></a>
     </li>
 
 
     <!-- Heading -->
-    
+
     <!-- Independent Views-->
 
     <div class="sidebar-heading">

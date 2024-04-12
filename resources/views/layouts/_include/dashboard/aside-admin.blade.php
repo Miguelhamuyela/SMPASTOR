@@ -16,7 +16,7 @@
     <li class="nav-item active">
         <a class="nav-link" href="{{ route('admin.home') }}">
             <i class="fas fa-fw fa-tachometer-alt"></i>
-            <span>Painel</span></a>
+            <span>Painel Administrativo</span></a>
     </li>
 
     <li class="nav-item active">
@@ -52,6 +52,36 @@
     <div class="sidebar-heading">
         Registro
     </div>
+
+ <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collap"
+            aria-expanded="true" aria-controls="collapsetttttt">
+            <i class="fas fa-fw fa-user"></i>
+            <span>Responsável</span>
+        </a>
+        <div id="collap" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+            <div class="bg-white py-2 collapse-inner rounded">
+
+                <a class="collapse-item $active" href="{{ route('admin.responsible.create') }}">Cadastrar</a>
+                <a class="collapse-item $active" href="{{ route('admin.responsible.list') }}">Listar</a>
+            </div>
+        </div>
+    </li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     <!-- Nav Item - Pages Collapse Menu -->
     <li class="nav-item">
@@ -188,6 +218,28 @@
     </div>
 
     <!-- Nav Item - Pages Collapse Menu -->
+
+
+
+    <!-- Nav Item - Utilities Collapse Menu -->
+
+    <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseSix"
+            aria-expanded="true" aria-controls="collapseSix">
+            <i class="fas fa-fw fa-clipboard-list"></i>
+            <span>Paroquia</span>
+        </a>
+        <div id="collapseSix" class="collapse" aria-labelledby="headingUtilities"
+            data-parent="#accordionSidebarrrr">
+            <div class="bg-white py-2 collapse-inner rounded">
+
+                <a class="collapse-item $active" href="{{ route('admin.parish.create') }}">Cadastrar</a>
+                <a class="collapse-item $active" href="{{ route('admin.parish.list') }}">Listar</a>
+            </div>
+        </div>
+    </li>
+
+
     <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTtttaa"
             aria-expanded="true" aria-controls="collapseTtttaa">
@@ -326,7 +378,7 @@
         </div>
     </li>
 
-    
+
     <!-- Nav Item - Pages Collapse Menu -->
     <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseExam"

@@ -149,6 +149,31 @@ Route::middleware('auth')->group(function () {
 
         /** End Course   */
 
+       /** parish-paroquia   */
+        Route::get('/admin/parish/list', ['as' => 'admin.parish.list', 'uses' => 'Admin\ParishController@index']);
+        Route::post('/admin/parish', ['as' => 'admin.parish.store', 'uses' => 'Admin\ParishController@store']);
+        Route::get('/admin/parish/create', ['as' => 'admin.parish.create', 'uses' => 'Admin\ParishController@create']);
+        Route::get('/admin/parish/show/{id}', ['as' => 'admin.parish.show', 'uses' => 'Admin\ParishController@show']);
+        Route::post('/admin/parish/update/{id}', ['as' => 'admin.parish.update', 'uses' => 'Admin\ParishController@update']);
+        Route::delete('/admin/parish/destroy/{id}', ['as' => 'admin.parish.destroy', 'uses' => 'Admin\ParishController@destroy']);
+        Route::get('/admin/parish/edit/{id}', ['as' => 'admin.parish.edit', 'uses' => 'Admin\ParishController@edit']);
+
+        /** End parish-paroquia   */
+
+
+       /** responsible   */
+        Route::get('/admin/responsible/list', ['as' => 'admin.responsible.list', 'uses' => 'Admin\ResponsibleController@index']);
+        Route::post('/admin/responsible', ['as' => 'admin.responsible.store', 'uses' => 'Admin\ResponsibleController@store']);
+        Route::get('/admin/responsible/create', ['as' => 'admin.responsible.create', 'uses' => 'Admin\ResponsibleController@create']);
+        Route::get('/admin/responsible/show/{id}', ['as' => 'admin.responsible.show', 'uses' => 'Admin\ResponsibleController@show']);
+        Route::post('/admin/responsible/update/{id}', ['as' => 'admin.responsible.update', 'uses' => 'Admin\ResponsibleController@update']);
+        Route::delete('/admin/responsible/destroy/{id}', ['as' => 'admin.responsible.destroy', 'uses' => 'Admin\ResponsibleController@destroy']);
+        Route::get('/admin/responsible/edit/{id}', ['as' => 'admin.responsible.edit', 'uses' => 'Admin\ResponsibleController@edit']);
+
+        /** End responsible */
+
+
+
         /** Subject   */
 
         Route::get('/admin/subject/list', ['as' => 'admin.subject.list', 'uses' => 'Admin\SubjectController@index']);
