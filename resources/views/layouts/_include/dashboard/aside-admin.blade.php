@@ -6,7 +6,7 @@
         <div class="sidebar-brand-icon rotate-n-15">
             <i class="fas fa-laugh-wink"></i>
         </div>
-        <div class="sidebar-brand-text mx-3">SGE - Admin</div>
+        <div class="sidebar-brand-text mx-3">GESTÃO ESCOLAR</div>
     </a>
 
     <!-- Divider -->
@@ -67,21 +67,6 @@
             </div>
         </div>
     </li>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
     <!-- Nav Item - Pages Collapse Menu -->
     <li class="nav-item">
@@ -248,7 +233,6 @@
         </a>
         <div id="collapseTtttaa" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
-
                 <a class="collapse-item $active" href="{{ route('admin.residence.create') }}">Cadastrar</a>
                 <a class="collapse-item $active" href="{{ route('admin.residence.list') }}">Listar</a>
             </div>

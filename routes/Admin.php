@@ -149,18 +149,6 @@ Route::middleware('auth')->group(function () {
 
         /** End Course   */
 
-       /** parish-paroquia   */
-        Route::get('/admin/parish/list', ['as' => 'admin.parish.list', 'uses' => 'Admin\ParishController@index']);
-        Route::post('/admin/parish', ['as' => 'admin.parish.store', 'uses' => 'Admin\ParishController@store']);
-        Route::get('/admin/parish/create', ['as' => 'admin.parish.create', 'uses' => 'Admin\ParishController@create']);
-        Route::get('/admin/parish/show/{id}', ['as' => 'admin.parish.show', 'uses' => 'Admin\ParishController@show']);
-        Route::post('/admin/parish/update/{id}', ['as' => 'admin.parish.update', 'uses' => 'Admin\ParishController@update']);
-        Route::delete('/admin/parish/destroy/{id}', ['as' => 'admin.parish.destroy', 'uses' => 'Admin\ParishController@destroy']);
-        Route::get('/admin/parish/edit/{id}', ['as' => 'admin.parish.edit', 'uses' => 'Admin\ParishController@edit']);
-
-        /** End parish-paroquia   */
-
-
        /** responsible   */
         Route::get('/admin/responsible/list', ['as' => 'admin.responsible.list', 'uses' => 'Admin\ResponsibleController@index']);
         Route::post('/admin/responsible', ['as' => 'admin.responsible.store', 'uses' => 'Admin\ResponsibleController@store']);
@@ -172,7 +160,16 @@ Route::middleware('auth')->group(function () {
 
         /** End responsible */
 
+      /** parish   */
+        Route::get('/admin/parish/list', ['as' => 'admin.parish.list', 'uses' => 'Admin\ParishController@index']);
+        Route::post('/admin/parish', ['as' => 'admin.parish.store', 'uses' => 'Admin\ParishController@store']);
+        Route::get('/admin/parish/create', ['as' => 'admin.parish.create', 'uses' => 'Admin\ParishController@create']);
+        Route::get('/admin/parish/show/{id}', ['as' => 'admin.parish.show', 'uses' => 'Admin\ParishController@show']);
+        Route::post('/admin/parish/update/{id}', ['as' => 'admin.parish.update', 'uses' => 'Admin\ParishController@update']);
+        Route::delete('/admin/parish/destroy/{id}', ['as' => 'admin.parish.destroy', 'uses' => 'Admin\ParishController@destroy']);
+        Route::get('/admin/parish/edit/{id}', ['as' => 'admin.parish.edit', 'uses' => 'Admin\ParishController@edit']);
 
+        /** End parish */
 
         /** Subject   */
 
