@@ -99,7 +99,7 @@ class ResponsibleController extends Controller
      */
     public function edit($id)
     {
-       $response['responsibles'] = Responsible::OrderBy('id','Desc')->get();
+        $response['responsibles'] = Responsible::OrderBy('id','Desc')->get();
         $response['responsibles'] = Responsible::find($id);
         $this->Logger->log('info', 'Editar o Responsável');
         return view('admin.responsible.edit.index', $response);
@@ -148,7 +148,7 @@ class ResponsibleController extends Controller
      */
     public function destroy($id)
     {
-          Responsible::find($id)->delete();
+        Responsible::find($id)->delete();
         $this->Logger->log('info', 'Eliminou o Curso');
 
         if (request()->ajax()) {

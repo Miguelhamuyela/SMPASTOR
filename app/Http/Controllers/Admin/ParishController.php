@@ -17,16 +17,12 @@ class ParishController extends Controller
     }
 
 
-    public function list()
+    public function index()
     {
 
-
         $response['parishes'] = Parish::OrderBy('id', 'Desc')->get();
-        $this->Logger->log('info', 'Lista de Funcionários');
+        $this->Logger->log('info', 'Lista de Paróquia');
         return view('admin.parish.list.index', $response);
-
-
-
     }
 
     /**
@@ -36,12 +32,9 @@ class ParishController extends Controller
      */
     public function create()
     {
-
         $response['parishes'] = Parish::OrderBy('id','Desc')->get();
-        $this->Logger->log('info', 'Criar Funcionário');
+        $this->Logger->log('info', 'Criar Paróquia');
         return view('admin.parish.create.index', $response);
-
-
 
     }
 
@@ -53,7 +46,25 @@ class ParishController extends Controller
      */
     public function store(Request $request)
     {
-        //
+         $data = $this->validate($request, [
+            'name' => 'required',
+            'phone' => 'required',
+            'address' => 'required',
+            'details' => 'required',
+
+        ],
+
+        [
+            'name.required' => 'O campo do nome é obrigatório',
+            'phone.required' => 'O campo Contacto é obrigatório',
+            'address.required' => 'O campo do Endereço é obrigatório',
+            'details.required' => 'O campo Região é obrigatório',
+        ]);
+
+
+        Parish::create($data);
+        $this->Logger->log('info', 'Cadastrou uma Paróquia');
+        return redirect()->back()->with('create', '1');
     }
 
     /**
@@ -64,7 +75,10 @@ class ParishController extends Controller
      */
     public function show($id)
     {
-        //
+        $response['parishes'] = Parish::find($id);
+
+        $this->Logger->log('info', 'Detalhes da Paróquia');
+        return view('admin.parish.details.index', $response);
     }
 
     /**
@@ -75,7 +89,10 @@ class ParishController extends Controller
      */
     public function edit($id)
     {
-        //
+        $response['parishes'] = Parish::OrderBy('id','Desc')->get();
+        $response['parishes'] = Parish::find($id);
+        $this->Logger->log('info', 'Editar a Paróquia');
+        return view('admin.parish.edit.index', $response);
     }
 
     /**
@@ -87,7 +104,23 @@ class ParishController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $data = $request->validate([
+            'name' => 'required',
+            'phone' => 'required',
+            'address' => 'required',
+            'details' => 'required',
+        ],
+
+        [
+            'name.required' => 'O campo do nome é obrigatório',
+            'phone.required' => 'O campo Contacto é obrigatório',
+            'address.required' => 'O campo do Endereço é obrigatório',
+            'details.required' => 'O campo Região é obrigatório',
+        ]);
+
+        Parish::find($id)->update($data);
+        $this->Logger->log('info', 'Atualizou uma Paróquia');
+        return redirect()->route('admin.parish.show', $id)->with('edit', '1');
     }
 
     /**
@@ -98,6 +131,13 @@ class ParishController extends Controller
      */
     public function destroy($id)
     {
-        //
+         Parish::find($id)->delete();
+        $this->Logger->log('info', 'Eliminou uma Paróquia');
+
+        if (request()->ajax()) {
+            return response()->json(['success' => true, 'message' => 'O Paróquia foi excluído.']);
+        } else {
+            return redirect()->back()->with('destroy', '1');
+        }
     }
 }
