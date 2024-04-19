@@ -68,6 +68,33 @@
         </div>
     </li>
 
+
+
+
+<li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapp"
+            aria-expanded="true" aria-controls="collapsettttttQ">
+            <i class="fas fa-fw fa-user"></i>
+            <span>Paroquia</span>
+        </a>
+        <div id="collapp" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+            <div class="bg-white py-2 collapse-inner rounded">
+
+                <a class="collapse-item $active" href="{{ route('admin.parish.create') }}">Cadastrar</a>
+                <a class="collapse-item $active" href="{{ route('admin.parish.list') }}">Listar</a>
+            </div>
+        </div>
+    </li>
+
+
+
+
+
+
+
+
+
+
     <!-- Nav Item - Pages Collapse Menu -->
     <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseYear"

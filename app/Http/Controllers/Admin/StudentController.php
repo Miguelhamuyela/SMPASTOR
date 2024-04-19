@@ -7,10 +7,13 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Exception;
 use App\Classes\Logger;
+use App\Models\Course;
 use App\Models\Log;
+use App\Models\Parish;
+use App\Models\Responsible;
 use App\Models\Schoolyear;
 use Carbon\Carbon;
-
+use Illuminate\Contracts\Support\Responsable;
 
 class StudentController extends Controller
 {
@@ -22,6 +25,7 @@ class StudentController extends Controller
     }
     public function index()
     {
+        $response['responsibles'] = Responsible::OrderBy('id', 'Desc')->get();
         $response['schoolyears'] = Schoolyear::OrderBy('id', 'Desc')->get();
         $response['students'] = Student::OrderBy('id', 'Desc')->get();
         $this->Logger->log('info', 'Lista de Alunos');
@@ -31,6 +35,9 @@ class StudentController extends Controller
 
     public function create()
     {
+        $response['courses'] = Course::OrderBy('id', 'Desc')->get();
+        $response['parishes'] = Parish::OrderBy('id', 'Desc')->get();
+        $response['responsibles'] = Responsible::OrderBy('id', 'Desc')->get();
         $response['total'] = Student::withTrashed()->count();
         $response['schoolyear'] = Schoolyear::OrderBy('id', 'Desc')->get();
         $this->Logger->log('info', 'Criar Aluno');
@@ -50,13 +57,15 @@ class StudentController extends Controller
                 'nProcess' => 'required',
                 'nBi' => 'required|unique:students,nBi,' . $request->id . ',id',
                 'contact' => 'required',
-                'contactAlter' => 'required',
                 'email' => 'required|email',
                 'dateBirth' => 'required',
                 'schoolyear' => 'required',
-
                 'father' => 'required',
                 'mother' => 'required',
+                'fk_parishes_id' => 'required',
+                'fk_responsibles_id' => 'required',
+                'fk_courses_id' => 'required'
+
             ],
 
             [
@@ -65,14 +74,15 @@ class StudentController extends Controller
                 'nBi.required' => 'O campo BI deve ser preenchido',
                 'nBi.unique' => 'Este BI já está cadastrado',
                 'contact.required' => 'O campo Contacto deve ser preenchido',
-                'contactAlter.required' => 'O campo Contacto Alternativo deve ser preenchido',
                 'email.required' => 'O campo E-mail deve ser preenchido',
                 'email.email' => 'O E-mail é invalido',
                 'dateBirth.required' => 'O campo Data de Nascimento deve ser preenchido',
                 'schoolyear.required' => 'O campo do Ano Lectivo deve ser selecionado',
                 'father.required' => 'O campo Nome do Pai  deve ser preenchido',
                 'mother.required' => 'O campo Nome da Mâe deve ser selecionado',
-
+                'fk_parishes_id.required' => 'O campo Paroquia é obrigatório',
+                'fk_responsibles_id.required' => 'O campo Responsável é obrigatório',
+                'fk_courses_id.required' => 'O campo Responsável é obrigatório',
 
             ]
         );
@@ -109,6 +119,9 @@ class StudentController extends Controller
 
     public function edit($id)
     {
+
+        $response['responsibles'] = Responsible::OrderBy('id', 'Desc')->get();
+        $response['courses'] = Course::OrderBy('id', 'Desc')->get();
         $response['student'] = Student::find($id);
         $response['schoolyear'] = Schoolyear::OrderBy('id', 'Desc')->get();
         $response['total'] = Student::withTrashed()->count();
@@ -122,31 +135,36 @@ class StudentController extends Controller
 
 
         $data = $request->validate([
-            'name' => 'required',
-            'nProcess' => 'required',
-            'nBi' => 'required',
-            'contact' => 'required',
-            'contactAlter' => 'required',
-            'email' => 'required|email',
-            'dateBirth' => 'required',
-            'schoolyear' => 'required',
-            'father' => 'required',
-            'mother' => 'required',
+               'name' => 'required',
+                'nProcess' => 'required',
+                'nBi' => 'required|unique:students,nBi,' . $request->id . ',id',
+                'contact' => 'required',
+                'email' => 'required|email',
+                'dateBirth' => 'required',
+                'schoolyear' => 'required',
+                'father' => 'required',
+                'mother' => 'required',
+                'fk_parishes_id' => 'required',
+                'fk_responsibles_id' => 'required',
+                'fk_courses_id' => 'required'
+
         ],
 
         [
-            'name.required' => 'O campo Nome deve ser preenchido',
-            'nProcess.required' => 'O campo Nº de Processo deve ser preenchido',
-            'nBi.required' => 'O campo BI deve ser preenchido',
-            'nBi.unique' => 'Este BI já está cadastrado',
-            'contact.required' => 'O campo Contacto deve ser preenchido',
-            'contactAlter.required' => 'O campo Contacto Alternativo deve ser preenchido',
-            'email.required' => 'O campo E-mail deve ser preenchido',
-            'email.email' => 'O E-mail é invalido',
-            'dateBirth.required' => 'O campo Data de Nascimento deve ser preenchido',
-            'schoolyear.required' => 'O campo do Ano Lectivo deve ser selecionado',
-            'father.required' => 'O campo Nome do Pai  deve ser preenchido',
-            'mother.required' => 'O campo Nome da Mâe deve ser selecionado',
+                'name.required' => 'O campo Nome deve ser preenchido',
+                'nProcess.required' => 'O campo Nº de Processo deve ser preenchido',
+                'nBi.required' => 'O campo BI deve ser preenchido',
+                'nBi.unique' => 'Este BI já está cadastrado',
+                'contact.required' => 'O campo Contacto deve ser preenchido',
+                'email.required' => 'O campo E-mail deve ser preenchido',
+                'email.email' => 'O E-mail é invalido',
+                'dateBirth.required' => 'O campo Data de Nascimento deve ser preenchido',
+                'schoolyear.required' => 'O campo do Ano Lectivo deve ser selecionado',
+                'father.required' => 'O campo Nome do Pai  deve ser preenchido',
+                'mother.required' => 'O campo Nome da Mâe deve ser selecionado',
+                'fk_parishes_id.required' => 'O campo Paroquia é obrigatório',
+                'fk_responsibles_id.required' => 'O campo Responsável é obrigatório',
+                'fk_courses_id.required' => 'O campo Responsável é obrigatório',
         ]);
         Student::find($id)->update($data);
         $this->Logger->log('info', 'Atualizou o Aluno');

@@ -288,57 +288,41 @@
 
     </div>
 
-
-
  <div class="col-md-3 py-2">
-        <label for="parish">Nome da Paróquia</label>
-        <input class="form-control" type="text" name="parish" id="name" placeholder="Nome da Paróquia"
-            required value="{{ isset($student->parish) ? $student->parish : old('parish') }}">
+        <label for="parish">Selecione a Paróquia</label>
+        <select name="fk_parishes_id" class="form-control"
+        aria-label="Default select example">
+        <option disabled>Selecione a Paróquia</option>
+        @foreach ($parishes as $item)
+            <option value="{{ $item->id }}">{{ $item->name }}</option>
+        @endforeach
+    </select>
     </div>
     <div class="col-md-3 py-2">
         <label for="responsible">Responsável dos Vocacionados</label>
-        <input class="form-control" type="text" name="responsible" id="responsible" placeholder="Responsável dos Vocacionados"
-            required value="{{ isset($student->responsible) ? $student->responsible : old('responsible') }}">
+        <select name="fk_responsibles_id" class="form-control"
+        aria-label="Default select example">
+        <option disabled>Selecione a Paróquia</option>
+        @foreach ($responsibles as $item)
+            <option value="{{ $item->id }}">{{ $item->name }}</option>
+        @endforeach
+    </select>
     </div>
 
     <div class="col-md-3 py-2">
-        <label for="mother">Nome da Mâe</label>
-        <input class="form-control" type="text" name="mother" id="mother" placeholder="Digite o Nome da mãe"
-            required value="{{ isset($student->mother) ? $student->mother : old('mother') }}">
+       <label for="fk_courses_id">Escolha o Curso</label>
+        <select class="form-control" name="fk_courses_id" id="fk_courses_id" required>
+            <option {{ isset($courseClasseGradeStudentSchoolyear) ? '' : 'selected' }}></option>
+            @foreach ($courses as $course)
+                <option value="{{ $course->id }}"
+                    {{ isset($courseClasseGradeStudentSchoolyear) && $courseClasseGradeStudentSchoolyear->courses->id == $course->id ? 'selected' : (old('fk_courses_id') == $course->id ? 'selected' : '') }}>
+                    {{ $course->name }}</option>
+            @endforeach
+        </select>
     </div>
+
 
     <div class="col-md-3 py-2">
-        <label for="nBi">Nº do BI</label>
-        <input class="form-control" type="text" name="nBi" id="nBi"
-            placeholder="Digite o nº do Bilhete de Identidade" required
-            value="{{ isset($student->nBi) ? $student->nBi : old('nBi') }}">
-    </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    <div class="col-md-6 py-2">
         <label for="schoolyear">Escolha o Ano lectivo</label>
         <select class="form-control" name="schoolyear" id="schoolyear" required>
             <option {{ isset($student) ? '' : 'selected' }}></option>
@@ -350,16 +334,7 @@
         </select>
     </div>
 
-
-
-
-
-
-
-
-
     <div class="col-md-6 py-2"></div>
-
     <div class="col-md-6 py-3">
         <button type="submit"
             class="btn btn-md btn-primary shadow-sm text-end">{{ isset($student) ? 'Atualizar' : 'Cadastrar' }}</button>

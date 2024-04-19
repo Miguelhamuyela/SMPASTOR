@@ -14,6 +14,10 @@ class Student extends Model
     use softDeletes;
     protected $dates = ['deleted_at'];
 
+     public function courses()
+    {
+        return $this->belongsTo(Course::class, 'fk_courses_id');
+    }
     public function schoolyears()
     {
         return $this->belongsToMany(Schoolyear::class, 'registrations', 'fk_students_id', 'fk_schoolyears_id')->withTimestamps();
@@ -23,5 +27,5 @@ class Student extends Model
     {
         return $this->belongsToMany(Grade::class, 'registrations');
     }
-    
+
 }

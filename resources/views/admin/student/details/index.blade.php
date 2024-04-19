@@ -32,7 +32,7 @@
 
                                 <div class="col-12 col-md-6 col-lg-4 mb-2">
                                     <h5>
-                                        <b class="mb-1">Número de Processo</b>
+                                        <b class="mb-1">Nºde Processo</b>
                                     </h5>
                                     <p class="text-dark">{{ $student->nProcess }}</p>
                                 </div>
@@ -51,6 +51,8 @@
                                     <p class="text-dark">{{ $student->email }}</p>
                                 </div>
 
+
+
                                 <div class="col-12 col-md-6 col-lg-4 mb-2">
                                     <h5>
                                         <b class="mb-1">Data de Nascimento</b>
@@ -59,7 +61,7 @@
                                 </div>
                                 <div class="col-12 col-md-6 col-lg-4 mb-2">
                                     <h5>
-                                        <b class="mb-1">Contacto do Aluno / Alternativo</b>
+                                        <b class="mb-1">Contacto do Aluno</b>
                                     </h5>
                                     <p class="text-dark">{{ $student->contact }} / {{ $student->contactAlter }}</p>
                                 </div>
@@ -81,7 +83,18 @@
                                     </h5>
                                     <p class="text-dark">{{ $student->schoolyear }}</p>
                                 </div>
-
+                                <div class="col-12 col-md-6 col-lg-4 mb-2">
+                                    <h5>
+                                        <b class="mb-1">Curso</b>
+                                    </h5>
+                                    <p class="text-dark">{{ $student->courses->name}}</p>
+                                </div>
+                                 <div class="col-12 col-md-6 col-lg-4 mb-2">
+                                    <h5>
+                                        <b class="mb-1">Responsavel do Estudante</b>
+                                    </h5>
+                                    <p class="text-dark">{{ $student->responsibles->name}}</p>
+                                </div>
                             </div>
                             <div class="row align-items-center">
                                 <div class="col-md-7 mb-2">

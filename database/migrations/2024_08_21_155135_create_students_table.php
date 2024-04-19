@@ -21,13 +21,18 @@ class CreateStudentsTable extends Migration
             $table->string('father');
             $table->string('mother');
             $table->string('contact');
-            $table->string('contactAlter');
             $table->string('email');
             $table->date('dateBirth');
             $table->string('schoolyear');
+            $table->unsignedBigInteger('fk_parishes_id');
+            $table->foreign('fk_parishes_id')->references('id')->on('parishes')->onDelete('CASCADE')->onUpgrade('CASCADE');
+            $table->unsignedBigInteger('fk_responsibles_id');
+            $table->foreign('fk_responsibles_id')->references('id')->on('responsibles')->onDelete('CASCADE')->onUpgrade('CASCADE');
+            $table->unsignedBigInteger('fk_courses_id');
+            $table->foreign('fk_courses_id')->references('id')->on('courses')->onDelete('CASCADE')->onUpgrade('CASCADE');
             $table->timestamps();
             $table->softDeletes();
-            
+
         });
     }
 
