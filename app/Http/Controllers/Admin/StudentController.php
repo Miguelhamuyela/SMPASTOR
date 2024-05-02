@@ -25,6 +25,8 @@ class StudentController extends Controller
     }
     public function index()
     {
+        $response['courses'] = Course::OrderBy('id', 'Desc')->get();
+        $response['parishes'] = Parish::OrderBy('id', 'Desc')->get();
         $response['responsibles'] = Responsible::OrderBy('id', 'Desc')->get();
         $response['schoolyears'] = Schoolyear::OrderBy('id', 'Desc')->get();
         $response['students'] = Student::OrderBy('id', 'Desc')->get();
@@ -119,7 +121,7 @@ class StudentController extends Controller
 
     public function edit($id)
     {
-
+        $response['parishes'] = Parish::OrderBy('id', 'Desc')->get();
         $response['responsibles'] = Responsible::OrderBy('id', 'Desc')->get();
         $response['courses'] = Course::OrderBy('id', 'Desc')->get();
         $response['student'] = Student::find($id);

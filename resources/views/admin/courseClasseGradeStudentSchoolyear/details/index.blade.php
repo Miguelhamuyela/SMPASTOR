@@ -22,7 +22,7 @@
                                     </h2>
                                 </div>
                                 <div class="col-12 col-md-4 col-lg-4 text-right mt-5">
-                                    
+
                                     <a href="{{ route('pdf.studentCard', $courseClasseGradeStudentSchoolyear->id) }}"
                                         target="_blank" class="btn btn-md btn-warning shadow-sm text-end">Cartão</a>
                                     <a href="{{ route('admin.courseClasseGradeStudentSchoolyear.edit', $courseClasseGradeStudentSchoolyear->id) }}"
@@ -33,7 +33,7 @@
                             <div class="row align-items-center">
                                 <div class="col-12 col-md-6 col-lg-4 mb-2">
                                     <h5>
-                                        <b class="mb-1">Nº de Processo</b>
+                                        <b class="mb-1">Nº de Proc</b>
                                     </h5>
                                     <p class="text-dark">{{ $courseClasseGradeStudentSchoolyear->students->nProcess }}</p>
                                 </div>
@@ -75,7 +75,7 @@
 
                                 <div class="col-12 col-md-6 col-lg-4 mb-2">
                                     <h5>
-                                        <b class="mb-1">Contacto | Alternativo</b>
+                                        <b class="mb-1">Contacto</b>
                                     </h5>
                                     <p class="text-dark">{{ $courseClasseGradeStudentSchoolyear->students->contact }} |
                                         {{ $courseClasseGradeStudentSchoolyear->students->contactAlter }} </p>

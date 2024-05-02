@@ -1,7 +1,7 @@
 <div class="row">
     <div class="col-md-6 py-2">
         <div class="row">
-            
+
             <div class="col-md-4">
                 <label for="nProcess">Escolha Nº de Processo</label>
                 <input class="form-control" type="text" name="nProcess" id="nProcess" placeholder="Nº de Processo"
@@ -89,7 +89,7 @@
         <label for="image">Imagem do Aluno</label>
         <input class="form-control" type="file" name="image" id="image" {{ isset($courseClasseGradeStudentSchoolyear) ? '' : 'required' }}>
     </div>
-    
+
 
     <div class="col-md-6 py-3">
         <button type="submit"
@@ -109,6 +109,10 @@
             });
         });
     });
+
+
+
+
 
     // Preencher o nome
 
@@ -144,7 +148,7 @@
 
     $('#fk_students_id').on('change', function() {
         var student = $(this).val();
-    
+
         if (student === '') {
             $('#nProcess').empty();
             $.each(students, function(key, value) {
@@ -158,8 +162,8 @@
                 success: function(data) {
                     console.log(data);
                     $('#nProcess').empty();
-    
-                    $('#nProcess').val(data); 
+
+                    $('#nProcess').val(data);
                 }
             });
         }

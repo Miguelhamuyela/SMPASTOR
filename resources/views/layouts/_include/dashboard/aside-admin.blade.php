@@ -68,10 +68,7 @@
         </div>
     </li>
 
-
-
-
-<li class="nav-item">
+   <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapp"
             aria-expanded="true" aria-controls="collapsettttttQ">
             <i class="fas fa-fw fa-user"></i>
@@ -85,14 +82,6 @@
             </div>
         </div>
     </li>
-
-
-
-
-
-
-
-
 
 
     <!-- Nav Item - Pages Collapse Menu -->
@@ -411,7 +400,7 @@
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseAtiv"
             aria-expanded="true" aria-controls="collapseAtiv">
             <i class="fas fa-fw fa-clipboard-list"></i>
-            <span>Atividades</span>
+            <span>Actividades</span>
         </a>
         <div id="collapseAtiv" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">

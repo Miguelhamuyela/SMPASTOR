@@ -38,8 +38,8 @@
             <img src="dashboard/assets/img/insignia.png" alt="">
         </div>
         <div class="text-center">REPÚBLICA DE ANGOLA</div>
-        <div class="text-center">MINISTÉRIO DA EDUCAÇÃO</div>
-        <div class="text-center">SISTEMA DE GESTÃO ESCOLAR</div>
+        <div class="text-center">DIOCESE DE BENGUELA</div>
+        <div class="text-center">SEMÍNARIO MÁIOR DO BOM PASTOR</div>
         <div class="text-center">LISTA DE ALUNOS MATRICULADOS</div>
         <div class="text-center">TURMA "{{ $classe }}"</div>
     </header>

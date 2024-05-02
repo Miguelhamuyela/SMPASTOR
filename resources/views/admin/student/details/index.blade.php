@@ -14,7 +14,6 @@
                     <div class="row justify-content-center">
                         <div class="col-12">
 
-
                             <div class="row justify-content-between mb-4">
                                 <div class="col-12 col-md-6 col-lg-6 mt-5 ml-5">
                                     <h2 class="h3 page-title">
@@ -27,19 +26,17 @@
                                 </div>
                             </div>
 
-
                             <div class="row align-items-center">
-
                                 <div class="col-12 col-md-6 col-lg-4 mb-2">
                                     <h5>
-                                        <b class="mb-1">Nºde Processo</b>
+                                        <b class="mb-1">Nºde Proc</b>
                                     </h5>
                                     <p class="text-dark">{{ $student->nProcess }}</p>
                                 </div>
 
                                 <div class="col-12 col-md-6 col-lg-4 mb-2">
                                     <h5>
-                                        <b class="mb-1">Número de BI</b>
+                                        <b class="mb-1">Nº do BI</b>
                                     </h5>
                                     <p class="text-dark">{{ $student->nBi }}</p>
                                 </div>
@@ -50,8 +47,6 @@
                                     </h5>
                                     <p class="text-dark">{{ $student->email }}</p>
                                 </div>
-
-
 
                                 <div class="col-12 col-md-6 col-lg-4 mb-2">
                                     <h5>
@@ -95,7 +90,37 @@
                                     </h5>
                                     <p class="text-dark">{{ $student->responsibles->name}}</p>
                                 </div>
+
+                                <div class="col-12 col-md-6 col-lg-4 mb-2">
+                                    <h5>
+                                        <b class="mb-1">Contacto do Responsavel</b>
+                                    </h5>
+                                    <p class="text-dark">{{ $student->responsibles->phone}}</p>
+                                </div>
+
+                                <div class="col-12 col-md-6 col-lg-4 mb-2">
+                                    <h5>
+                                        <b class="mb-1">Religião do Responsavel</b>
+                                    </h5>
+                                    <p class="text-dark">{{ $student->responsibles->religion}}</p>
+                                </div>
+
+                               <div class="col-12 col-md-6 col-lg-4 mb-2">
+                                    <h5>
+                                        <b class="mb-1">Ocupação do Responsavel</b>
+                                    </h5>
+                                    <p class="text-dark">{{ $student->responsibles->occupation}}</p>
+                                </div>
+
+                                  <div class="col-12 col-md-6 col-lg-4 mb-2">
+                                    <h5>
+                                        <b class="mb-1">Paroquia/Comunidade</b>
+                                    </h5>
+                                    <p class="text-dark">{{ $student->parishes->name}}</p>
+                                </div>
+
                             </div>
+
                             <div class="row align-items-center">
                                 <div class="col-md-7 mb-2">
                                     <hr>
