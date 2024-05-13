@@ -12,6 +12,8 @@ use App\Models\Student;
 use Illuminate\Http\Request;
 use App\Classes\Logger;
 use App\Models\Log;
+use App\Models\Parish;
+use App\Models\Responsible;
 use Illuminate\Support\Facades\Storage;
 
 class CourseClasseGradeStudentSchoolyearController extends Controller
@@ -24,6 +26,8 @@ class CourseClasseGradeStudentSchoolyearController extends Controller
     }
     public function index()
     {
+        $response['parishes'] = Parish::OrderBy('id', 'Desc')->get();
+        $response['responsibles'] = Responsible::OrderBy('id', 'Desc')->get();
         $response['coursesClassesGradesStudentsSchoolyears'] = CourseClasseGradeStudentSchoolyear::OrderBy('id', 'Desc')->get();
         $response['schoolyears'] = Schoolyear::OrderBy('id', 'Desc')->get();
         $response['classes'] = Classe::OrderBy('id', 'Desc')->get();
@@ -34,6 +38,8 @@ class CourseClasseGradeStudentSchoolyearController extends Controller
 
     public function create()
     {
+        $response['parishes'] = Parish::OrderBy('id', 'Desc')->get();
+        $response['responsibles'] = Responsible::OrderBy('id', 'Desc')->get();
         $response['courses'] = Course::OrderBy('id', 'Desc')->get();
         $response['classes'] = Classe::OrderBy('id', 'Desc')->get();
         $response['grades'] = Grade::OrderBy('id', 'Desc')->get();
@@ -49,30 +55,33 @@ class CourseClasseGradeStudentSchoolyearController extends Controller
         $data = $this->validate(
             $request,
             [
+                'fk_parishes_id' => 'required',
+                'fk_responsibles_id' => 'required',
                 'fk_courses_id' => 'required',
                 'fk_classes_id' => 'required',
                 'fk_grades_id' => 'required',
                 'fk_students_id' => 'required',
                 'fk_schoolyears_id' => 'required',
                 'season' => 'required',
-                'image' => 'required|image|mimes:png,jpg,jpeg|max:500',
+                'detail' => 'required',
+              //  'image' => 'required|image|mimes:png,jpg,jpeg|max:500',
             ],
             [
                 'fk_courses_id.required' => 'O campo Curso deve ser selecionado',
                 'fk_classes_id.required' => 'O campo Turma deve ser selecionado',
+                'fk_parishes_id.required' => 'O campo Curso deve ser selecionado',
+                'fk_responsibles_id.required' => 'O campo Turma deve ser selecionado',
                 'fk_grades_id.required' => 'O campo Classe deve ser selecionado',
                 'fk_students_id.required' => 'O campo Aluno deve ser selecionado',
                 'fk_schoolyears_id.required' => 'O campo Ano Lectivo deve ser selecionado',
                 'season.required' => 'O campo Turno deve ser selecionado',
-                'image.required' => 'O campo da imagem é obrigatória.',
-                'image.mimes' => 'O campo de imagem só pode receber arquivos do tipo: png, jpg ou jpeg',
-                'image.max' => 'A imagem é muito grande, deve conter no máximo 500KB'
+                'detail.required' => 'O campo Detalhe é obrigatória.',
+              //  'image.required' => 'O campo da imagem é obrigatória.',
+              //  'image.mimes' => 'O campo de imagem só pode receber arquivos do tipo: png, jpg ou jpeg',
+               // 'image.max' => 'A imagem é muito grande, deve conter no máximo 500KB'
             ]
         );
 
-        $image = Storage::putFile('public/images', $request->image);
-        $imageName = str_replace('public/images/', '', $image);
-        $data['image'] = $imageName;
 
         CourseClasseGradeStudentSchoolyear::create($data);
         $this->Logger->log('info', 'Matriculou um Aluno');
@@ -90,6 +99,8 @@ class CourseClasseGradeStudentSchoolyearController extends Controller
 
     public function edit($id)
     {
+        $response['parishes'] = Parish::OrderBy('id', 'Desc')->get();
+        $response['responsibles'] = Responsible::OrderBy('id', 'Desc')->get();
         $response['courses'] = Course::OrderBy('id', 'Desc')->get();
         $response['classes'] = Classe::OrderBy('id', 'Desc')->get();
         $response['grades'] = Grade::OrderBy('id', 'Desc')->get();
@@ -101,42 +112,44 @@ class CourseClasseGradeStudentSchoolyearController extends Controller
     }
 
 
+
+
     public function update(Request $request, $id)
     {
         $data = $request->validate(
             [
+                'fk_parishes_id' => 'required',
+                'fk_responsibles_id' => 'required',
                 'fk_courses_id' => 'required',
                 'fk_classes_id' => 'required',
                 'fk_grades_id' => 'required',
                 'fk_students_id' => 'required',
                 'fk_schoolyears_id' => 'required',
                 'season' => 'required',
-                'image' => 'required|image|mimes:png,jpg,jpeg|dimensions:min_width=100,min_height=100,max_width=500,max_height=500|max:500',
+                'detail' => 'required',
+               // 'image' => 'required|image|mimes:png,jpg,jpeg|max:500',
             ],
+
             [
                 'fk_courses_id.required' => 'O campo Curso deve ser selecionado',
                 'fk_classes_id.required' => 'O campo Turma deve ser selecionado',
+                'fk_parishes_id.required' => 'O campo Curso deve ser selecionado',
+                'fk_responsibles_id.required' => 'O campo Turma deve ser selecionado',
                 'fk_grades_id.required' => 'O campo Classe deve ser selecionado',
                 'fk_students_id.required' => 'O campo Aluno deve ser selecionado',
                 'fk_schoolyears_id.required' => 'O campo Ano Lectivo deve ser selecionado',
                 'season.required' => 'O campo Turno deve ser selecionado',
-                'image.required' => 'O campo da imagem é obrigatória.',
-                'image.mimes' => 'O campo de imagem só pode receber arquivos do tipo: png, jpg ou jpeg'
+                'detail.required' => 'O campo Detalhe é obrigatória.',
+
             ]
         );
 
 
 
+
         $registration = CourseClasseGradeStudentSchoolyear::find($id);
 
-        if ($request->image) {
-            Storage::disk('images')->delete($registration->image);
-            
-            $image = Storage::putFile('public/images', $request->image);
-            $imageName = str_replace('public/images/','',$image);
-            $data['image'] = $imageName;
 
-        }
         $registration->update($data);
 
         $this->Logger->log('info', 'Atualizou a Matricula');

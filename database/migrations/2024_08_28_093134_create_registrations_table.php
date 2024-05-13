@@ -16,7 +16,7 @@ class CreateRegistrationsTable extends Migration
         Schema::create('registrations', function (Blueprint $table) {
             $table->id();
             $table->string('season');
-            $table->string('image');
+          //  $table->string('image');
 
             $table->unsignedBigInteger('fk_courses_id');
             $table->foreign('fk_courses_id')->references('id')->on('courses')->onDelete('CASCADE')->onUpgrade('CASCADE');
@@ -30,9 +30,14 @@ class CreateRegistrationsTable extends Migration
             $table->unsignedBigInteger('fk_students_id');
             $table->foreign('fk_students_id')->references('id')->on('students')->onDelete('CASCADE')->onUpgrade('CASCADE');
 
+            $table->unsignedBigInteger('fk_parishes_id');
+            $table->foreign('fk_parishes_id')->references('id')->on('parishes')->onDelete('CASCADE')->onUpgrade('CASCADE');
+
+            $table->unsignedBigInteger('fk_responsibles_id');
+            $table->foreign('fk_responsibles_id')->references('id')->on('responsibles')->onDelete('CASCADE')->onUpgrade('CASCADE');
             $table->unsignedBigInteger('fk_schoolyears_id');
             $table->foreign('fk_schoolyears_id')->references('id')->on('schoolyears')->onDelete('CASCADE')->onUpgrade('CASCADE');
-
+            $table->longText("detail");
 
             $table->timestamps();
             $table->softDeletes();

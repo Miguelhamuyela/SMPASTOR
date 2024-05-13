@@ -103,6 +103,7 @@ class StudentController extends Controller
 
         $this->Logger->log('info', 'Cadastrou Aluno');
         return redirect()->back()->with('create', '1');
+
     }
 
 
@@ -152,6 +153,7 @@ class StudentController extends Controller
 
         ],
 
+
         [
                 'name.required' => 'O campo Nome deve ser preenchido',
                 'nProcess.required' => 'O campo Nº de Processo deve ser preenchido',
@@ -171,6 +173,9 @@ class StudentController extends Controller
         Student::find($id)->update($data);
         $this->Logger->log('info', 'Atualizou o Aluno');
         return redirect()->route('admin.student.show', $id)->with('edit', '1');
+
+
+
     }
 
 

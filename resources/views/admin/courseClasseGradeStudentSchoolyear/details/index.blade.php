@@ -45,6 +45,24 @@
                                     <p class="text-dark">{{ $courseClasseGradeStudentSchoolyear->courses->name }}</p>
                                 </div>
 
+
+
+
+
+                                <div class="col-12 col-md-6 col-lg-4 mb-2">
+                                    <h5>
+                                        <b class="mb-1">Nome da Paróquia</b>
+                                    </h5>
+                                    <p class="text-dark">{{ $courseClasseGradeStudentSchoolyear->parish->name }}</p>
+                                </div>
+
+                                <div class="col-12 col-md-6 col-lg-4 mb-2">
+                                    <h5>
+                                        <b class="mb-1">Nome do Encarregado/Responsavel</b>
+                                    </h5>
+                                    <p class="text-dark">{{ $courseClasseGradeStudentSchoolyear->responsible->name }}</p>
+                                </div>
+
                                 <div class="col-12 col-md-6 col-lg-4 mb-2">
                                     <h5>
                                         <b class="mb-1">Classe</b>
@@ -73,6 +91,8 @@
                                     <p class="text-dark">{{ $courseClasseGradeStudentSchoolyear->schoolyears->name }}</p>
                                 </div>
 
+
+
                                 <div class="col-12 col-md-6 col-lg-4 mb-2">
                                     <h5>
                                         <b class="mb-1">Contacto</b>
@@ -80,16 +100,10 @@
                                     <p class="text-dark">{{ $courseClasseGradeStudentSchoolyear->students->contact }} |
                                         {{ $courseClasseGradeStudentSchoolyear->students->contactAlter }} </p>
                                 </div>
+
                                 <hr>
                             </div>
 
-                            <div class="row align-items-center">
-                                <div class="col-12 col-md-6 col-lg-4 mb-2">
-                                    <img src="/storage/images/{{ $courseClasseGradeStudentSchoolyear->image }}"
-                                        alt="Imagem - {{ $courseClasseGradeStudentSchoolyear->students->name }}">
-                                    <p class="text-dark"> </p>
-                                </div>
-                            </div>
 
                             <div class="row align-items-center">
                                 <div class="col-md-7 mb-2">

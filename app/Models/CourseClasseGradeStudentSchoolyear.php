@@ -18,6 +18,16 @@ class CourseClasseGradeStudentSchoolyear extends Model
         return $this->belongsTo(Course::class, 'fk_courses_id');
     }
 
+    public function Responsible()
+    {
+        return $this->belongsTo(Responsible::class, 'fk_responsibles_id');
+    }
+
+    public function Parish()
+    {
+        return $this->belongsTo(Parish::class, 'fk_parishes_id');
+    }
+
     public function classes()
     {
         return $this->belongsTo(Classe::class, 'fk_classes_id');

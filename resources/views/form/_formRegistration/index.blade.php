@@ -18,7 +18,8 @@
                     @endforeach
                 </select>
             </div>
-            <div class="col-md-12 text-muted">Poderá escolher pelo nome ou pelo nº de processo, as duas opções são válidas.</div>
+            <div class="col-md-12 text-muted">Poderá escolher pelo nome ou pelo nº de processo, as duas opções são
+                válidas.</div>
         </div>
     </div>
 
@@ -69,6 +70,8 @@
             @endforeach
         </select>
     </div>
+
+
     <div class="col-md-6 py-2">
         <label for="season">Escolha o turno</label>
         <select class="form-control" name="season" id="season" required>
@@ -85,17 +88,62 @@
         </select>
     </div>
 
+
+ <div class="col-md-3 py-8">
+        <label for="fk_parishes_id">Escolha a Paroquia</label>
+        <select class="form-control" name="fk_parishes_id" id="fk_parishes_id" required>
+            <option {{ isset($courseClasseGradeStudentSchoolyear) ? '' : 'selected' }}></option>
+            @foreach ($parishes as $parish)
+                <option value="{{ $parish->id }}"
+                    {{ isset($courseClasseGradeStudentSchoolyear) && $courseClasseGradeStudentSchoolyear->parishes->id == $parish->id ? 'selected' : (old('fk_parishes_id') == $parish->id ? 'selected' : '') }}>
+                    {{ $parish->name }}</option>
+            @endforeach
+        </select>
+    </div>
+
+
+
+
+
+    <div class="col-md-3 py-8">
+        <label for="responsible">Responsável dos Vocacionados</label>
+        <select name="fk_responsibles_id" class="form-control" aria-label="Default select example">
+            <option disabled>Selecione a Paróquia</option>
+            @foreach ($responsibles as $item)
+                <option value="{{ $item->id }}">{{ $item->name }}</option>
+            @endforeach
+        </select>
+    </div>
+
+
+ {{--
     <div class="col-md-6 py-2">
         <label for="image">Imagem do Aluno</label>
-        <input class="form-control" type="file" name="image" id="image" {{ isset($courseClasseGradeStudentSchoolyear) ? '' : 'required' }}>
+        <input class="form-control" type="file" name="image" id="image"
+            {{ isset($courseClasseGradeStudentSchoolyear) ? '' : 'required' }}>
     </div>
 
+sweetalert --}}
 
-    <div class="col-md-6 py-3">
-        <button type="submit"
-            class="btn btn-md btn-primary shadow-sm text-end">{{ isset($courseClasseGradeStudentSchoolyear) ? 'Atualizar' : 'Cadastrar' }}</button>
+    <div class="col-md-12 py-2">
+        <label for="detail">Digite alguns detalhes Sobre a Matricula</label>
+        <textarea class="form-control" id="detail" name="detail" type="text"rows="3"></textarea>
     </div>
+
 </div>
+
+
+
+
+
+
+<div class="col-md-6 py-3">
+    <button type="submit"
+        class="btn btn-md btn-primary shadow-sm text-end">{{ isset($courseClasseGradeStudentSchoolyear) ? 'Atualizar' : 'Cadastrar' }}</button>
+</div>
+
+
+
 
 <script>
     var students = []; // variável global para armazenar os dados do select
@@ -109,6 +157,11 @@
             });
         });
     });
+
+
+
+
+
 
 
 
